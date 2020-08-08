@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block head %}
+<title>Task Master</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Update Task</h1>
+
+    <br>
+    <form action="/update/{{task.id}}" method="post">
+        <input type="text" name="content" id="content" class="form-control mb-4 col-4" value="{{task.content}}" required>
+        <input type="submit" value="Update" class="btn btn-primary btn-sm mb-3">
+    </form>
+</div>
+{% endblock%}

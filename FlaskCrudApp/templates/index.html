@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block head %}
+<title>Task Master</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 style="text-align: center;">Task Master</h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center;"> There are no tasks. Create one below!</h4>
+    {% else %}
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Task</th>
+                <th>Added</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{task.id}}"
+                       onclick="if (!(confirm('Are you sure you want to delete this task?'))) return false;">Delete</a> | <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br>
+    <a href="/add" class="btn btn-primary btn-sm mb-3">Create a new task</a>
+</div>
+{% endblock%}
